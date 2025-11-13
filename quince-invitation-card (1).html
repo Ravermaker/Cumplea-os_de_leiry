@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis 15 Años - Leiry Lored</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #fdfcff 0%, #f2eefc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .invitation-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #bda0d9 0%, #a284c4 100%);
+            padding: 40px 20px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+
+        .welcome-text {
+            color: white;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 10px 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.8s forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .photo-section {
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 8px solid #bda0d9;
+            box-shadow: 0 10px 30px rgba(189, 160, 217, 0.3);
+            overflow: hidden;
+            position: relative;
+            background: #f0f0f0;
+            animation: photoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes photoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 2.2rem;
+            color: #5e4d75;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: slideIn 1s ease-out 1.2s backwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .special-message {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+            padding: 0 30px;
+            font-style: italic;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out 1.5s backwards;
+        }
+
+        .details-section {
+            background: #f9f9f9;
+            padding: 40px 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .detail-item {
+            margin-bottom: 25px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInScale 0.6s ease-out forwards;
+        }
+
+        .detail-item:nth-child(1) { animation-delay: 1.8s; }
+        .detail-item:nth-child(2) { animation-delay: 2s; }
+        .detail-item:nth-child(3) { animation-delay: 2.2s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .detail-value {
+            font-size: 1.3rem;
+            color: #5e4d75;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #bda0d9 0%, #a284c4 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.5s forwards;
+        }
+
+        .balloon {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: floatUp 15s infinite ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .balloon-1 {
+            width: 60px; height: 75px;
+            background: radial-gradient(circle at 30% 30%, #fdfcff, #f2eefc);
+            left: 10%;
+            animation-delay: 0s; animation-duration: 12s;
+        }
+        .balloon-2 {
+            width: 50px; height: 65px;
+            background: radial-gradient(circle at 30% 30%, #f7d060, #e6b422); /* Gold */
+            left: 80%;
+            animation-delay: 3s; animation-duration: 14s;
+        }
+        .balloon-3 {
+            width: 55px; height: 70px;
+            background: radial-gradient(circle at 30% 30%, #e0e0e0, #b0b0b0); /* Silver */
+            left: 30%;
+            animation-delay: 6s; animation-duration: 16s;
+        }
+        .balloon-4 {
+            width: 45px; height: 60px;
+            background: radial-gradient(circle at 30% 30%, #c7b2e0, #bda0d9);
+            left: 70%;
+            animation-delay: 9s; animation-duration: 13s;
+        }
+        .balloon-5 {
+            width: 58px; height: 72px;
+            background: radial-gradient(circle at 30% 30%, #f7d060, #e6b422); /* Gold */
+            left: 50%;
+            animation-delay: 2s; animation-duration: 15s;
+        }
+        .balloon-6 {
+            width: 48px; height: 62px;
+            background: radial-gradient(circle at 30% 30%, #e0e0e0, #b0b0b0); /* Silver */
+            left: 90%;
+            animation-delay: 7s; animation-duration: 18s;
+        }
+        .balloon-7 {
+            width: 52px; height: 68px;
+            background: radial-gradient(circle at 30% 30%, #fdfcff, #f2eefc);
+            left: 20%;
+            animation-delay: 11s; animation-duration: 14s;
+        }
+        .balloon-8 {
+            width: 62px; height: 78px;
+            background: radial-gradient(circle at 30% 30%, #f7d060, #e6b422); /* Gold */
+            left: 40%;
+            animation-delay: 5s; animation-duration: 20s;
+        }
+
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            width: 1px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateX(-50%);
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #bda0d9 0%, #a284c4 100%);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(189, 160, 217, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 35px rgba(189, 160, 217, 0.5);
+        }
+
+        .music-control:active {
+            transform: scale(0.95);
+        }
+
+        .music-icon {
+            width: 28px;
+            height: 28px;
+            fill: white;
+            transition: all 0.3s ease;
+        }
+
+        .music-control.playing {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            animation: musicPlaying 1s infinite;
+        }
+
+        @keyframes musicPlaying {
+            0%, 100% { box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4); }
+            50% { box-shadow: 0 8px 35px rgba(76, 175, 80, 0.6); }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .name {
+                font-size: 1.8rem;
+            }
+            .special-message {
+                font-size: 0.95rem;
+                padding: 0 20px;
+            }
+            .music-control {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .music-icon {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Control de música -->
+    <button class="music-control" id="musicControl" aria-label="Control de música">
+        <svg class="music-icon" id="musicIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </button>
+
+    <!-- Audio element -->
+    <audio id="backgroundMusic" loop>
+        <source src="vals.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="balloon balloon-1"></div>
+    <div class="balloon balloon-2"></div>
+    <div class="balloon balloon-3"></div>
+    <div class="balloon balloon-4"></div>
+    <div class="balloon balloon-5"></div>
+    <div class="balloon balloon-6"></div>
+    <div class="balloon balloon-7"></div>
+    <div class="balloon balloon-8"></div>
+
+    <div class="invitation-container">
+        <div class="header">
+            <div class="welcome-text">Bienvenidos a mis</div>
+            <div class="title">15 Años</div>
+        </div>
+
+        <div class="photo-section">
+            <div class="photo-frame" id="photoFrame">
+                <img src="foto1.png" alt="Leiry Lored">
+            </div>
+            <div class="name">Leiry Lored<br>Romero Barragán</div>
+            <div class="special-message">
+                "Quince años marcan el inicio de una nueva etapa. Te invito a celebrar conmigo este momento tan especial en mi vida."
+            </div>
+        </div>
+
+        <div class="details-section">
+            <div class="detail-item">
+                <div class="detail-label">📅 Fecha</div>
+                <div class="detail-value">17 de Noviembre 2025</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">🕒 Hora</div>
+                <div class="detail-value">3:00 PM</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">📍 Lugar</div>
+                <div class="detail-value">Parques de Bolívar<br>Etapa 4</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-text">¡Te espero!</div>
+        </div>
+    </div>
+
+    <script>
+        // Control de música
+        const musicControl = document.getElementById('musicControl');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        // Configurar volumen
+        backgroundMusic.volume = 0.3;
+
+        musicControl.addEventListener('click', function() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicControl.classList.remove('playing');
+                musicIcon.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+            } else {
+                backgroundMusic.play();
+                musicControl.classList.add('playing');
+                musicIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>';
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+</body>
+</html>
