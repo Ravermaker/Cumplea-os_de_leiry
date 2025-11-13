@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de QR Personalizado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #qrcode {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 20px auto;
+        }
+        .instructions {
+            margin: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de Código QR Personalizado</h1>
+    
+    <div class="instructions">
+        <p>Este script generará un código QR personalizado con la letra "H" en el centro y de color morado.</p>
+        <p>Después de generar el código, haz clic en "Descargar código QR" para obtener la imagen.</p>
+    </div>
+    
+    <div id="qrcode"></div>
+    
+    <button onclick="downloadQR()">Descargar código QR</button>
+    
+    <script type="text/javascript">
+        function createCustomQR() {
+            // Limpiar el contenedor
+            document.getElementById("qrcode").innerHTML = "";
+            
+            // URL que quieres que el código QR enlace
+            const url = "https://github.com/Ravermaker/Cumplea-os_de_leiry";
+            
+            // Generar el QR code
+            const qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: url,
+                width: 200,
+                height: 200,
+                colorDark: "#800080", // Morado
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Esperar a que se genere el QR y luego personalizarlo
+            setTimeout(() => {
+                const canvas = document.querySelector('#qrcode canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Dibujar la letra "H" en el centro
+                ctx.font = "bold 80px Arial";
+                ctx.fillStyle = "#800080"; // Morado
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("H", canvas.width/2, canvas.height/2);
+            }, 1000);
+        }
+        
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = 'codigo_qr_personalizado.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } else {
+                alert('Primero debes generar el código QR');
+            }
+        }
+        
+        // Generar el QR al cargar la página
+        window.onload = function() {
+            setTimeout(createCustomQR, 500);
+        };
+    </script>
+</body>
+</html>
